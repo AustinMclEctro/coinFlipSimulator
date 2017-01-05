@@ -17,6 +17,8 @@ public class Interface {
 	private String line7 = "---            ---";
 	private String line8 = "--              --";
 	private String line9 = "-                -";
+	
+	
 	/**
 	 * Constructor method for user interface of game.
 	 */
