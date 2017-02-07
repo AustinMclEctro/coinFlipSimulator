@@ -6,8 +6,8 @@ import java.util.Scanner;
  * Singleton class that handles user interface and game navigation.
  * @author Austin
  */
-public class Interface {
-	private Interface instance = null;
+public class UserInterface {
+	private UserInterface instance = null;
 	private String line1 = "------------------";
 	private String line2 = "--------  --------";
 	private String line3 = "-------    -------";
@@ -22,7 +22,7 @@ public class Interface {
 	/**
 	 * Constructor method for user interface of game.
 	 */
-	protected Interface(){
+	protected UserInterface(){
 		if(instance == null){
 			System.out.println("======== Coin Simulator 2017 ========");
 			System.out.println("         by Austin Sullivan         \n");
@@ -33,7 +33,7 @@ public class Interface {
 	private void mainMenu(){
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Main Menu");
-		//animation();
+		animation();
 		
 	}
 	
@@ -42,19 +42,23 @@ public class Interface {
 	/**
 	 * Method which uses a new thread to create animated interfaces
 	 */
-	/*
 	private void animation(){
+		
 		Thread anim = new Thread(){
 			
 			public void run(){
 				int lineState = 1;
-				String theLine = null;
+				String theLine = "";
 				boolean incr = true;		//when true, lineState is incremented at end of while loop
 											//when false, lineState is decremented at end of while loop
 				
 				while(!this.isInterrupted()){
 					theLine = "line" + lineState;
 					System.out.println(theLine);
+					
+					//TODO: make regex or something to print the specifically defind lines (at top of class)
+					//		instead of printing 'line1', 'line2', etc.
+					//TODO: make lines replace themselves on one line, instead of printing to a new line every time.
 					
 					if(incr){
 						lineState++;
@@ -68,7 +72,7 @@ public class Interface {
 					}
 					
 					try {
-						this.wait(400);
+						this.sleep(400);
 					} catch (InterruptedException e) {
 						System.out.println("animation thread interrupted!");
 						e.printStackTrace();
@@ -78,12 +82,13 @@ public class Interface {
 		};
 		anim.start();
 	}
-	*/
-	
+
+	//WHY DID I MAKE THIS?
+	//There is a Thread.sleep() method already built into the Thread class. o_O
 	/**
 	 * @param millis
 	 */
-	private void sleep(long millis){
+	private void rest(int millis){
 		try{
 			Thread.sleep(millis);
 		} catch (InterruptedException e){
